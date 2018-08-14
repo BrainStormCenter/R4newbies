@@ -28,3 +28,6 @@ Below are some of my notes from R for Data Science
 
 ## Data
 To begin, one has to get data into R (* are recommendations)
+1.	After import, "tidy" your data. This means that each column is a variable and each row 	is an obsrvation/subject.
+1.	Next, "transform" the raw data to create new variables of interest (e.g., summary 			statistics).
+* 
