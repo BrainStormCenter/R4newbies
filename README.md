@@ -15,3 +15,12 @@ The responses have been astoundingly wonderful, and I will attempt to use this s
 #First questions
 ## What is R
 * As of now, my best answer is that R is a (very robust) programming language capable of a great many things. To me, the R language seems primarily focused on gathering, manipulating, analyzing, and presenting data in all its various forms.
+
+The R community on Twitter has been open and very helpful. For example, here are the two recommended books for learning R, which are free and on the web.
+
+
+Modern Dive https://moderndive.com/ 
+
+R for Data Science http://r4ds.had.co.nz/ 
+
+
