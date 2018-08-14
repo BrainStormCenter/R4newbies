@@ -12,7 +12,7 @@ Yesterday I posted my initial question about how to get started using R from an 
 
 The responses have been astoundingly wonderful, and I will attempt to use this site to log my learning curve of R and RStudio.
 
-#First questions
+# First questions
 ## What is R
 * As of now, my best answer is that R is a (very robust) programming language capable of a great many things. To me, the R language seems primarily focused on gathering, manipulating, analyzing, and presenting data in all its various forms.
 
@@ -23,4 +23,8 @@ Modern Dive https://moderndive.com/
 
 R for Data Science http://r4ds.had.co.nz/ 
 
+Below are some of my notes from R for Data Science
 
+
+## Data
+To begin, one has to get data into R (* are recommendations)
