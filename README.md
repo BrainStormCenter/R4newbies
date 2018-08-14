@@ -30,4 +30,19 @@ Below are some of my notes from R for Data Science
 To begin, one has to get data into R (* are recommendations)
 1.	After import, "tidy" your data. This means that each column is a variable and each row 	is an obsrvation/subject.
 1.	Next, "transform" the raw data to create new variables of interest (e.g., summary 			statistics).
-* 
+
+This second step is my biggest hurdle at the moment. The notes below will cover how to take these initial steps to transform raw data.
+
+## Import Data
+```{r Import data}
+#		IMPORT ROI AND BEHAVIORAL DATA
+combined_dat <- read_excel("Psychosis Risk Structural Clusters with Covariates 7.26.18.xlsx")
+```
+This is a test to see if inserting a bash chunck works
+
+```{r}
+sample_dat <- read_excel("SampleData.xlsx")
+```
+
+
+
