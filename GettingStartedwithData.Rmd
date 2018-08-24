@@ -25,7 +25,18 @@ To begin, one has to have an idea of what packages R will need to load to accomp
 ```{r}
 library(readxl) # This is used to import data from excel
 library(tidyverse)
+library(here)
 
+here()
+dr_here(show_reason = TRUE)
+
+
+```
+
+
+
+```{r}
+# potential other packages
 # library(plyr)
 # library(tidyr)
 # library(doBy)
@@ -35,9 +46,8 @@ library(tidyverse)
 
 # library(dplyr)
 # library(reshape2)
+
 ```
-
-
 
 
 ## RUNNING EXAMPLES FROM THE BOOK "R for Data Science"
