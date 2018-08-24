@@ -1,7 +1,8 @@
 ---
-title: "Getting started with data"
+title: "Getting started with data in R"
 author: "Jason"
-date: "8/14/2018"
+date:		"14/08/2018"
+modified:	"24/08/2018"
 output: html_document
 ---
 
