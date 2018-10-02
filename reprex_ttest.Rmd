@@ -1,0 +1,31 @@
+---
+title: "reprex_ttest"
+author: "Jason"
+date: "8/25/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r load libraries}
+library(tidyverse)
+library(reprex)
+```
+
+#	IMPORT DATA
+```{r Import data}
+cars_dat <- mtcars
+```
+
+#	T-TEST (Group comparison of regional measurements)
+```{r t-test to compare groups}
+t.test(mpg~am, cars_dat)
+t.test(disp~am, cars_dat) 	
+t.test(hp~am, cars_dat) 		
+t.test(drat~am, cars_dat)
+t.test(wt~am, cars_dat) 
+t.test(qsec~am, cars_dat)
+```

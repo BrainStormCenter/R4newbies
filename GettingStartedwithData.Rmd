@@ -1,8 +1,8 @@
 ---
-title: "Getting started with data in R"
-author: "Jason"
+title: 		"Getting started with data in R"
+author: 	"Jason"
 date:		"14/08/2018"
-modified:	"24/08/2018"
+modified:	"25/08/2018"
 output: html_document
 ---
 
@@ -14,10 +14,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Overall general considerations
 
-1.	After import, "tidy" your data. This means that each column is a variable and each row is an obsrvation/subject.
-1.	Next, "transform" the raw data to create new variables of interest (e.g., summary statistics).
-
-This second step is my biggest hurdle at the moment. The notes below will cover how to take these initial steps to transform raw data.
 
 
 
@@ -34,8 +30,7 @@ dr_here(show_reason = TRUE)
 
 ```
 
-
-
+#	OTHER LIBRARIES
 ```{r}
 # potential other packages
 # library(plyr)
@@ -51,10 +46,57 @@ dr_here(show_reason = TRUE)
 ```
 
 
+## MANIPULATING DATA
+This section uses examples from the "data wrangling cheeatsheet"
+```{r}
+data1 <- iris
+dplyr::tbl_df(data1)
+dplyr::glimpse(data1)
+
+data1 %>%
+	group_by(Species) %>%
+	summarise(avg = mean(Sepal.Width)) %>%
+	arrange(avg)
+
+dplyr::summarise(data1, avg = mean(Sepal.Length))
+dplyr::summarise(data1, avg = mean(Sepal.Width))
+
+dplyr::summarise_all(data1, funs(mean))
+
+dplyr::count(data1, Species, wt=Sepal.Length)
+dplyr::count(data1, Species)
+
+# IDENTIFIES UNIQUE VALUES IN A VECTOR
+# THE FIRST RETURNS A COUNT OF UNIQUE VALUES
+# THE SECOND RETURNS THE UNIQUE VALUES
+dplyr::n_distinct(data1$Species)
+unique(data1$Species)
+
+
+
+
+```
+
+
+```{r}
+x <- sample(1:10, 1e5, rep = TRUE)
+length(unique(x))
+n_distinct(x)
+
+
+```
+
+
+1.	After import, "tidy" your data. This means that each column is a variable and each row is an obsrvation/subject.
+1.	Next, "transform" the raw data to create new variables of interest (e.g., summary statistics).
+
+This second step is my biggest hurdle at the moment. The notes below will cover how to take these initial steps to transform raw data.
+
 ## RUNNING EXAMPLES FROM THE BOOK "R for Data Science"
 
 R uses something called data frames. This seems to be a canvas of sorts for the program and is apparently different from a table data frame.
 
+## PLOTTING DATA
 ```{r}
 ggplot(data = mpg) +
 	geom_point(mapping = aes(x = displ, y = hwy))
@@ -208,6 +250,13 @@ gapminder %>%
 
 
 
+```{r}
+Data2 = data.frame(value = c(rnorm(10000),rnorm(10000,5), rnorm(10000,10)), groups = rep(c('a','b','d'), each = 10000), gender = rep(c('M','F'), each = 15000))
+## the mean values for each group
+```
+
+
+
 
 
 
@@ -246,10 +295,11 @@ library(tidyverse)
 
 
 
-```{r Import data}
+```{r Import data and put into data frame}
 library(tidyverse)
 library(readxl)
 SampleData <- read_excel("SampleData.xlsx")
+SampleData <- data.frame(SampleData)
 #View(SampleData) # UNCOMMENT THIS LINE TO EXECUTE CODE
 ```
 
@@ -259,11 +309,29 @@ SampleData <- data.frame(SampleData)
 ```
 
 ```{r}
-DataMeans <- sapply(split(SampleData$lh.area.frontal, SampleData$Gp2), mean)
-
-DataMeans
+# All the t-tests, tidyverse style
+t_tests_tidy <- map(
+  select(SampleData, -Group), ~ t.test(.x ~ Group, data = SampleData)
 
 ```
+
+
+
+```{r}
+t.test(ICV~Gp2, SampleData) # N-Sig
+t.test(lh.volume.occipital~Gp2, SampleData) 	# N-Sig
+t.test(lh.volume.frontal ~Gp2, SampleData) 		# N-Sig
+t.test(lh.area.frontal~Gp2, SampleData) 		# Sig
+t.test(rh.volume.pericalcarine~Gp2, SampleData) # N-Sig
+t.test(lh.volume.occipital.sum~Gp2, SampleData) # N-Sig
+t.test(lh.volume.frontal.sum~Gp2, SampleData)	# N-Sig
+t.test(lh.area.frontal.sum~Gp2, SampleData)		# Sig
+t.test(rh.volume.pericalcarine.sum~Gp2, SampleData) # N-Sig
+
+```
+
+
+
 
 
 
@@ -284,17 +352,13 @@ DataMeans
 ```
 
 
+
 ```{r}
-Data2 = data.frame(value = c(rnorm(10000),rnorm(10000,5), rnorm(10000,10)), groups = rep(c('a','b','d'), each = 10000), gender = rep(c('M','F'), each = 15000))
-## the mean values for each group
+DataMeans <- sapply(split(SampleData$lh.area.frontal, SampleData$Gp2), mean)
+
+DataMeans
+
 ```
-
-
-
-
-
-
-
 
 
 ##	RECODING VARIABLES
@@ -318,6 +382,23 @@ ggplot(data = SampleData, mapping = aes(x = Gp2, y = lh.area.frontal)) +
 
 ```
 
+
+## COMPARING TWO DATA SETS 
+```{r}
+library(tidyverse)
+
+data1 <- tibble("a"=runif(5),"b"=runif(5),"c"=runif(5),"d"=runif(5))
+
+data2 <- tibble("a"=runif(5),"b"=runif(5),"c"=runif(5),"d"=runif(5),"e"=runif(5),"f"=runif(5))
+
+
+missing_columns <- data2 %>% 
+  select(which(!(colnames(data2) %in% colnames(data1))))
+
+# USING A RDATA FILE WITH TWO DATA.FRAMES
+missing_columns <- dat %>%
+    select(which(!(colnames(dat) %in% colnames(my_data))))
+```
 
 
 
@@ -343,18 +424,7 @@ roi1 + stat_summary_bin(aes(y = lh.area.frontal), fun.y = "mean", geom = "bar", 
 
 ```
 
-```{r}
-t.test(ICV~Gp2, SampleData) # N-Sig
-t.test(lh.volume.occipital~Gp2, SampleData) 	# N-Sig
-t.test(lh.volume.frontal ~Gp2, SampleData) 		# N-Sig
-t.test(lh.area.frontal~Gp2, SampleData) 		# Sig
-t.test(rh.volume.pericalcarine~Gp2, SampleData) # N-Sig
-t.test(lh.volume.occipital.sum~Gp2, SampleData) # N-Sig
-t.test(lh.volume.frontal.sum~Gp2, SampleData)	# N-Sig
-t.test(lh.area.frontal.sum~Gp2, SampleData)		# Sig
-t.test(rh.volume.pericalcarine.sum~Gp2, SampleData) # N-Sig
 
-```
 
 
 ```{r}
