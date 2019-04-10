@@ -2,7 +2,7 @@
 title: 		"Getting started with data in R"
 author: 	"Jason"
 date:		"14/08/2018"
-modified:	"25/08/2018"
+modified:	"25/02/2019"
 output: html_document
 ---
 
@@ -93,6 +93,10 @@ n_distinct(x)
 This second step is my biggest hurdle at the moment. The notes below will cover how to take these initial steps to transform raw data.
 
 ## RUNNING EXAMPLES FROM THE BOOK "R for Data Science"
+
+The link for the book mentioned above is:
+R for Data Science http://r4ds.had.co.nz/ 
+
 
 R uses something called data frames. This seems to be a canvas of sorts for the program and is apparently different from a table data frame.
 
