@@ -4,6 +4,7 @@ author: "Jason"
 date: "4/4/2019"
 modified: "09/04/2019"
 modified: "10/04/2019"
+modified: "12/04/2019"
 output: html_document
 ---
 ## R Markdown setup
@@ -13,6 +14,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 To begin, one has to have an idea of what packages R will need to load to accomplish your goals. The packages below are the ones I will need to analyze the pilot data.
+
+These are ASQ pilot analyses are for the alcohol grant.
 
 ```{r}
 library(readxl) # This is used to import data from excel
@@ -76,7 +79,7 @@ data3[data3$participant_id == "IP183", "max.temp"] <- 48
 ## EDIT DATA v2
 ```{r}
 #	CORRECTING AN ERROR IN THE MAX TEMP OF THREE SUBJECTS
-#	CHANGING THE max.temp VALUE 
+#	CHANGING THE max.temp VALUE
 data2[data2$participant_id == "IP005", "max.temp"] <- 50
 data2[data2$participant_id == "IP168", "max.temp"] <- 50
 data2[data2$participant_id == "IP183", "max.temp"] <- 48
