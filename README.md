@@ -1,6 +1,8 @@
 # R4newbies
 Date I start this project: March 19, 2018
 
+modified: "12/04/2019"
+
 This is to document my journey to learning R and RStudio as a total newbie.
 
 The first thing I had to do was figure out how to get RStudio to interact with GitHub.
