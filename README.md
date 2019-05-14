@@ -2,6 +2,7 @@
 Date I start this project: March 19, 2018
 
 modified: "12/04/2019"
+modified: "14/05/2019"
 
 This is to document my journey to learning R and RStudio as a total newbie.
 
