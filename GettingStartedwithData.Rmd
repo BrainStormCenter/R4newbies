@@ -19,13 +19,14 @@ Overall general considerations
 
 To begin, one has to have an idea of what packages R will need to load to accomplish your goals. The packages below are the ones used in this example.
 
-```{r}
+```{r ---> Libraries}
 library(readxl) # This is used to import data from excel
 library(tidyverse)
+# library(tabulizerjars)
+# library(tabulizer)
 library(here)
-
 here()
-dr_here(show_reason = TRUE)
+dr_here(show_reason = FALSE)
 
 
 ```
@@ -47,6 +48,29 @@ dr_here(show_reason = TRUE)
 
 
 ## MANIPULATING DATA
+```{r ---> R data editor}
+#		This command allows you to create a data frame 
+#		and enter data manually.
+mydata <- edit( data.frame())
+
+#		This command allows you to manually edit 
+#		the data in a data frame
+fix(mydata)
+
+#		This is the last value given to R
+#		if you need to retrieve it for some reason
+.Last.value
+
+#		To attach a comment to an object (e.g., data file) 
+#		use the command comment(name.of.object)
+comment(mydata) <- "This is adds a comment to an object"
+#		To see the comment 
+comment(mydata)
+
+
+
+```
+
 This section uses examples from the "data wrangling cheeatsheet"
 ```{r}
 data1 <- iris
@@ -76,6 +100,21 @@ unique(data1$Species)
 
 
 ```
+
+```{r ---> Scrapitn tables}
+#	Extracting tables from a pdf
+
+
+dat_pdf <- 
+	extract_tables("Perring_2008.pdf")
+
+dat_df <- 
+  dat_pdf %>%
+  map(as_tibble)
+
+
+```
+
 
 
 ```{r}
